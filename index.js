@@ -38,6 +38,7 @@ var generateRandomString = function(length) {
   return text;
 };
 
+
 app.all('*', function(req,res,next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
@@ -45,10 +46,10 @@ app.all('*', function(req,res,next) {
   next();
 });
 
+
 app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
-
   // your application requests authorization
   var scope = 'user-read-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -65,10 +66,11 @@ app.get('/callback', function(req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
-
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
+  console.log(`ewgrer`, state)
+  console.log(`yuihgj`, storedState)
 
   if (state === null || state !== storedState) {
     console.log('state mismatch', 'state: ' + state, 'storedState ' + storedState, 'cookies ', req.cookies);
@@ -92,6 +94,7 @@ app.get('/callback', function(req, res) {
     };
 
     request.post(authOptions, function(error, response, body) {
+      console.log(`rtret`, error, response ,`bd`, body)
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
@@ -119,6 +122,7 @@ app.get('/callback', function(req, res) {
 });
 
 app.post('/token', function(req, res) {
+
   res.setHeader('Access-Control-Allow-Origin', '*');
   var refreshToken = req.body ? req.body.refresh_token : null;
   if (refreshToken) {
