@@ -69,8 +69,6 @@ app.get('/callback', function(req, res) {
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
-  console.log(`ewgrer`, state)
-  console.log(`yuihgj`, storedState)
 
   if (state === null || state !== storedState) {
     console.log('state mismatch', 'state: ' + state, 'storedState ' + storedState, 'cookies ', req.cookies);
@@ -94,7 +92,7 @@ app.get('/callback', function(req, res) {
     };
 
     request.post(authOptions, function(error, response, body) {
-      console.log(`rtret`, error, response ,`bd`, body)
+  
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
