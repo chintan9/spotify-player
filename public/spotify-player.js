@@ -23,7 +23,7 @@ class SpotifyPlayer {
   }
 
   init() {
-    this.fetchToken().then(r => r.json()).then(json => {
+    this.fetchToken().then(r => r.json() &&  console.warn(`32r08ywe`, r)).then(json => {
       this.accessToken = json['access_token'];
       this.expiresIn = json['expires_in'];
       this._onNewAccessToken();
@@ -49,6 +49,7 @@ class SpotifyPlayer {
   }
 
   _onNewAccessToken() {
+    console.warn(`vnbtrghith`);
     if (this.accessToken === '') {
       console.log('Got empty access token, log out');
       this.dispatch('login', null);
