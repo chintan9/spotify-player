@@ -1,5 +1,7 @@
 # Spotify Player
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/chintan9/spotify-player.svg)](https://greenkeeper.io/)
+
 A node.js server plus a light JS library to create integrations with the [Spotify Web API Connect endpoints](https://developer.spotify.com/web-api/web-api-connect-endpoint-reference/).
 
 ## Using the library
